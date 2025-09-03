@@ -14,4 +14,11 @@ function multiply(a, b) {
   return a * b;
 }
 
-module.exports = { add, subtract, multiply };
+function divide(a, b) {
+    if (b === 0) {
+        return 0; // A tricky case for the AI to test
+    }
+    return a / b;
+}
+
+module.exports = { add, subtract, multiply, divide };
