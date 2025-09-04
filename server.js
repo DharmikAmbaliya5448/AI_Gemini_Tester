@@ -75,4 +75,5 @@ if (require.main === module) {
   });
 }
 
+// Export server reference for testing
 module.exports = { app, server, users, resetData };
