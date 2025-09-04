@@ -33,11 +33,11 @@ app.get("/users/:id", (req, res) => {
 });
 
 // READ Single user (GET /user/:name)
-app.get("/users/:name", (req, res) => {
-  const user = users.find(u => u.name === req.params.name);
-  if (!user) return res.status(404).json({ message: "User not found" });
-  res.json(user);
-});
+// app.get("/users/:name", (req, res) => {
+//   const user = users.find(u => u.name === req.params.name);
+//   if (!user) return res.status(404).json({ message: "User not found" });
+//   res.json(user);
+// });
 
 // UPDATE (PUT /users/:id)
 app.put("/users/:id", (req, res) => {
