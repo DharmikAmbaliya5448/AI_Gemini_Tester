@@ -33,11 +33,11 @@ app.get("/users/:id", (req, res) => {
 });
 
 // READ Single user (GET /user/:name)
-// app.get("/users/:name", (req, res) => {
-//   const user = users.find(u => u.name === req.params.name);
-//   if (!user) return res.status(404).json({ message: "User not found" });
-//   res.json(user);
-// });
+app.get("/users/:name", (req, res) => {
+  const user = users.find(u => u.name === req.params.name);
+  if (!user) return res.status(404).json({ message: "User not found" });
+  res.json(user);
+});
 
 // UPDATE (PUT /users/:id)
 app.put("/users/:id", (req, res) => {
@@ -60,7 +60,19 @@ app.delete("/users/:id", (req, res) => {
   res.json(deletedUser[0]);
 });
 
-// Start server
-app.listen(PORT, () => {
-  console.log(`🚀 Server running on http://localhost:${PORT}`);
-});
+// Reset function for testing
+function resetData() {
+  users.length = 0;
+  idCounter = 1;
+}
+
+// Export app and server for testing
+let server;
+if (require.main === module) {
+  // Only start server if this file is run directly (not when required as module)
+  server = app.listen(PORT, () => {
+    console.log(`🚀 Server running on http://localhost:${PORT}`);
+  });
+}
+
+module.exports = { app, server, users, resetData };
