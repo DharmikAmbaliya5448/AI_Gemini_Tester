@@ -3,6 +3,9 @@ const { users, User } = require("../models/userModel");
 // CREATE
 exports.createUser = (req, res) => {
   const { name, email } = req.body;
+  if (!name || name.trim() === "" || !email || email.trim() === "") {
+    return res.status(400).json({ message: "Name and email are required" });
+  }
   const newUser = new User(name, email);
   users.push(newUser);
   res.status(201).json(newUser);
